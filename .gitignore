@@ -1,0 +1,6 @@
+storage/
+recovered/
+__pycache__/
+*.img
+*.raw
+*.bin
