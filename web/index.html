@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAWLIET // Forensic Tool</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="navbar">
+            <div class="logo">
+                <img src="logo.jpg" alt="Logo" class="logo-image">
+                <div class="logo-text">
+                    <h1>LAWLIET</h1>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="./" class="nav-link active">Recovery</a>
+                <a href="files.html" class="nav-link">Files</a>
+            </nav>
+        </header>
+
+        <!-- Main Workspace -->
+        <div class="workspace">
+            <!-- Left Sidebar - Available Images -->
+            <aside class="panel sidebar-left">
+                <div class="panel-header">
+                    <span class="icon">📁</span>
+                    <h2>Source Images</h2>
+                    <button id="refreshImages" class="btn-refresh" title="Scan Storage">↻</button>
+                </div>
+
+                <div class="upload-compact" id="uploadArea">
+                    <input type="file" id="imageFile" accept=".raw,.img,.dd,.bin" hidden>
+                    <span>+ Drop new image here</span>
+                </div>
+
+                <div id="imagesList" class="scroll-area">
+                    <p class="empty-msg">No sources found.</p>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="core-engine">
+                <section class="action-card">
+                    <div class="card-title">Recovery Console</div>
+
+                    <div class="control-grid">
+                        <!-- Input Mode Selector -->
+                        <div class="field full-width">
+                            <label>Input Source</label>
+                            <div class="mode-selector">
+                                <button id="modeImage" class="mode-btn active" data-mode="image">
+                                    📁 Image File
+                                </button>
+                                <button id="modeDevice" class="mode-btn" data-mode="device">
+                                    💾 Hardware Device
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Image File Mode -->
+                        <div id="imageMode" class="field mode-content">
+                            <label>Target Workspace</label>
+                            <select id="imageSelect" class="custom-select">
+                                <option value="">Select an image to carve...</option>
+                            </select>
+                        </div>
+
+                        <!-- Hardware Device Mode -->
+                        <div id="deviceMode" class="field mode-content" style="display: none;">
+                            <label>Device Selection</label>
+                            <select id="deviceSelect" class="custom-select">
+                                <option value="">Select a device...</option>
+                            </select>
+                            <div style="margin-top: 10px;">
+                                <label>Or enter manually:</label>
+                                <input type="text" id="deviceManual" class="custom-input" placeholder="/dev/sdb">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Buffer Density (MB)</label>
+                            <div class="buffer-input-wrapper">
+                                <input type="number" id="bufferSize" value="8" min="1" max="1024">
+                                <span class="unit">MB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="recoverFiles" class="btn-primary" disabled>
+                        EXECUTE CARVING PROCESS
+                    </button>
+
+                    <div id="recoveryProgress" class="process-monitor" style="display: none;">
+                        <div class="monitor-info">
+                            <span id="recoveryProgressMessage">Initializing...</span>
+                            <span id="recoveryProgressText">0%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="recoveryProgressBar" class="progress-fill"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <div id="uploadProgress" class="process-monitor mini" style="display: none;">
+                    <div class="monitor-info">
+                        <span id="uploadProgressMessage">Uploading Image...</span>
+                        <span id="uploadProgressText">0%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div id="uploadProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="status-bar">
+            <div class="path-display">ROOT_DIR: /forensics/recovered</div>
+            <div class="session-info">Session: 2025.12.26</div>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>

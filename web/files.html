@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAWLIET // Files</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="navbar">
+            <div class="logo">
+                <img src="logo.jpg" alt="Logo" class="logo-image">
+                <div class="logo-text">
+                    <h1>LAWLIET</h1>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="./" class="nav-link">Recovery</a>
+                <a href="files.html" class="nav-link active">Files</a>
+            </nav>
+        </header>
+
+        <!-- Files Workspace -->
+        <div class="workspace files-view">
+            <!-- Filters Sidebar -->
+            <aside class="panel filters-panel">
+                <div class="panel-header">
+                    <span class="icon">🔍</span>
+                    <h2>Filters</h2>
+                    <button id="refreshFiles" class="btn-refresh">↻</button>
+                </div>
+
+                <div class="filter-section">
+                    <label>File Type</label>
+                    <div class="chip-group" id="filterType">
+                        <button class="chip active" data-type="all">All</button>
+                        <button class="chip" data-type="jpeg">JPEG</button>
+                        <button class="chip" data-type="png">PNG</button>
+                        <button class="chip" data-type="pdf">PDF</button>
+                        <button class="chip" data-type="gif">GIF</button>
+                        <button class="chip" data-type="zip">ZIP</button>
+                        <button class="chip" data-type="mp4">MP4</button>
+                        <button class="chip" data-type="office_new">DOCX</button>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <label>Source Image</label>
+                    <select id="filterSource" class="custom-select">
+                        <option value="all">All Sources</option>
+                    </select>
+                </div>
+
+                <div class="stats-box">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Files</span>
+                        <span class="stat-value" id="totalFiles">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Filtered</span>
+                        <span class="stat-value" id="filteredFiles">0</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Files Grid -->
+            <main class="files-main">
+                <div id="filesList" class="files-grid">
+                    <p class="empty-msg">No recovered files yet.</p>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="status-bar">
+            <div class="path-display">ROOT_DIR: /forensics/recovered</div>
+            <div class="session-info">Session: 2025.12.26</div>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="files.js"></script>
+</body>
+
+</html>
